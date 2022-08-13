@@ -1,0 +1,21 @@
+ List<Movie> movies = loadMovies("src/main/java/progmatic/moviedatabase/FilmAdatbázisFormázott.csv");
+
+            System.out.println("Number of movies: " + movies.size());
+
+            System.out.println(searchByTitle(movies, "2012"));
+
+            System.out.println(totalMoviesByGenreCounter(movies));
+
+            System.out.print("A legöregebb film az adatbázisban: ");
+            System.out.print(mostOldMovie(movies));
+
+            System.out.println(searchByMadeYear(movies, 2010));
+
+            System.out.println(searchByProducer(movies, "Robert wise"));
+
+            System.out.println(searchByActor(movies, "George Clooney"));
+
+<link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/pricing/">
+
+    <link href="static/bootstrap.min.css" rel="stylesheet">
+
