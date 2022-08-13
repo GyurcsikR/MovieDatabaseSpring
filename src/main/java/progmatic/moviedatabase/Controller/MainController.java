@@ -40,13 +40,13 @@ public class MainController {
 
     @GetMapping("/list")
     public String listAllMovies(Model model) throws IOException {
-        model.addAttribute("movies", movieService.getAll());
+        model.addAttribute("movies", movieRepository.findAllByIdBetween(1L, 100L));
         return "list.html";
     }
 
     @GetMapping(value = "/list/search")
     public String searchMovie(Model model) {
-        List<Movie> movies = movieService.getAll();
+        List<Movie> movies = movieRepository.findAllByIdBetween(1L, 100L);
         model.addAttribute("form", new MovieSearchForm());
         model.addAttribute("movies", movies);
 
