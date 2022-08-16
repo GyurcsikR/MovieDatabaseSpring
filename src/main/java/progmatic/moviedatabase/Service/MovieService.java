@@ -1,12 +1,16 @@
 package progmatic.moviedatabase.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import progmatic.moviedatabase.Model.Movie;
 import progmatic.moviedatabase.Repository.MovieRepository;
 import progmatic.moviedatabase.SearchForm.MovieSearchForm;
 
+import java.awt.print.Pageable;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -48,14 +52,22 @@ public class MovieService {
         return movieRepository.count();
     }
 
-    public List<Movie> getAll() {
+    public Page<Movie> getAll(int pageNumber) {
+
+        org.springframework.data.domain.Pageable pageable = PageRequest.of(pageNumber - 1, 15);
+
+        return movieRepository.findAll(pageable);
+
+    }
+    public List<Movie> getAllMovie() {
+
         return new ArrayList<>((Collection) movieRepository.findAll());
     }
 
     public List<Movie> getByForm(MovieSearchForm form) {
         List<Movie> result = new ArrayList<>();
 
-        for (Movie movie : getAll()) {
+        for (Movie movie : getAllMovie()) {
             if (form.getId() != null && !form.getId().equals(movie.getId())) {
                 continue;
             }

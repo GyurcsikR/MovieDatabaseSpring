@@ -1,11 +1,16 @@
 package progmatic.moviedatabase.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import progmatic.moviedatabase.Model.Movie;
 import progmatic.moviedatabase.Repository.MovieRepository;
 import progmatic.moviedatabase.SearchForm.MovieSearchForm;
@@ -33,15 +38,31 @@ public class MainController {
         if(movieService.countMovies() == 0) {
             List<Movie> movies = movieService.loadMovies();
         }
-        model.addAttribute("listSize", movieService.getAll().size() + " film");
+        model.addAttribute("listSize", movieService.getAllMovie().size() + " film");
 
         return "index";
     }
 
     @GetMapping("/list")
-    public String listAllMovies(Model model) throws IOException {
-        model.addAttribute("movies", movieRepository.findAllByIdBetween(1L, 100L));
-        return "list.html";
+    public String  getAllMovie(Model model){
+        return listByPage(model, 1);
+    }
+
+    @GetMapping("page/{pageNumber}")
+    public String listByPage(Model model, @PathVariable("pageNumber") int currentPage){
+
+        Page<Movie> page = movieService.getAll(currentPage);
+        long totalItems = page.getTotalElements();
+        int totalPages = page.getTotalPages();
+
+        List<Movie> listMovies = page.getContent();
+
+        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("totalItems", totalItems);
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("movies", listMovies);
+        return "list";
+
     }
 
     @GetMapping(value = "/list/search")

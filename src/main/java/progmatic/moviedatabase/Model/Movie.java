@@ -1,10 +1,6 @@
 package progmatic.moviedatabase.Model;
 
-import com.fasterxml.jackson.annotation.JsonTypeId;
-import com.fasterxml.jackson.databind.annotation.JsonTypeIdResolver;
-import org.hibernate.annotations.DynamicInsert;
 
-import javax.annotation.processing.Generated;
 import javax.persistence.*;
 import java.util.Objects;
 
