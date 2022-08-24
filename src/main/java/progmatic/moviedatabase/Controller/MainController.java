@@ -7,15 +7,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import progmatic.moviedatabase.Model.Movie;
 import progmatic.moviedatabase.Repository.MovieRepository;
 import progmatic.moviedatabase.SearchForm.MovieSearchForm;
 import progmatic.moviedatabase.Service.MovieService;
+import progmatic.moviedatabase.Service.PageUserDetailsService;
 
+
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -27,14 +27,18 @@ public class MainController {
     private MovieService movieService;
     private MovieRepository movieRepository;
 
+    private PageUserDetailsService pageUserDetailsService;
+
     @Autowired
-    public MainController(MovieService movieService, MovieRepository movieRepository){
+    public MainController(MovieService movieService, MovieRepository movieRepository, PageUserDetailsService pageUserDetailsService){
         this.movieService = movieService;
         this.movieRepository = movieRepository;
+        this.pageUserDetailsService = pageUserDetailsService;
     }
 
     @GetMapping(value = "/")
     public String getMoviesListSize(Model model) throws IOException {
+        //System.out.println(pageUserDetailsService.getLoggedInUser());
         if(movieService.countMovies() == 0) {
             List<Movie> movies = movieService.loadMovies();
         }
@@ -81,6 +85,24 @@ public class MainController {
         model.addAttribute("movies", movies);
 
         return "searchMovie";
+    }
+
+    @GetMapping("/login")
+    public String loginPage() {
+        return "login";
+    }
+
+    @GetMapping("/login-error")
+    public String loginErrorPage(Model model) {
+        model.addAttribute("loginError", true);
+
+        return "login";
+    }
+    @RequestMapping("/logout")
+    public String logout(HttpServletRequest request){
+        request.getSession(true).invalidate();
+
+        return "login";
     }
 }
 

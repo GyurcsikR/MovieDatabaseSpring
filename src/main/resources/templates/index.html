@@ -7,6 +7,19 @@
 
 </head>
 <body>
+<li>
+    <a data-th-href="@{/list}">Főoldal</a>
+</li>
+<li>
+    <a data-th-href="@{/list/search}">Keresés</a>
+</li>
+<li sec:authorize="isAuthenticated()">
+    <a data-th-href="@{/logout}">Kijelentkezés</a>
+</li>
+<li sec:authorize="!isAuthenticated()">
+    <a data-th-href="@{/login}">Bejelentkezés</a>
+</li>
+&nbsp;&nbsp;
 
 <p data-th-text="'Adatbázis mérete'"></p>
 <p data-th-text="${listSize}"></p>

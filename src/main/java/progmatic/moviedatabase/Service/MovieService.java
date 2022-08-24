@@ -6,6 +6,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import progmatic.moviedatabase.Model.Comment;
 import progmatic.moviedatabase.Model.Movie;
 import progmatic.moviedatabase.Repository.MovieRepository;
 import progmatic.moviedatabase.SearchForm.MovieSearchForm;

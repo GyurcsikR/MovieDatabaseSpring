@@ -8,8 +8,18 @@
 </head>
 <body>
 
-<a data-th-href="@{/list}">Főoldal</a>
-<a data-th-href="@{/list/search}">Keresés</a>
+<li>
+    <a data-th-href="@{/list}">Főoldal</a>
+</li>
+<li>
+    <a data-th-href="@{/list/search}">Keresés</a>
+</li>
+<li sec:authorize="isAuthenticated()">
+    <a data-th-href="@{/logout}">Kijelentkezés</a>
+</li>
+<li sec:authorize="!isAuthenticated()">
+    <a data-th-href="@{/login}">Bejelentkezés</a>
+</li>
 &nbsp;
 
 <h4>Összes bejegyzés</h4>
@@ -64,6 +74,9 @@
 
     <a data-th-if="${currentPage < totalPages}" data-th-href="@{'/page/' + ${totalPages}}">Last</a>
     <span data-th-unless="${currentPage < totalPages}">Last</span>
+
+</div>
+<div>
 
 </div>
 
