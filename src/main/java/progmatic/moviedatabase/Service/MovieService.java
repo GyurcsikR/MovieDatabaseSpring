@@ -31,7 +31,7 @@ public class MovieService {
 
     public List<Movie> loadMovies() throws IOException{
         List<Movie> movies = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader("src/main/java/progmatic/moviedatabase/Service/FilmAdatbázisFormázott.csv"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/static/FilmAdatbázisFormázott.csv"))) {
 
             reader.readLine();
 
