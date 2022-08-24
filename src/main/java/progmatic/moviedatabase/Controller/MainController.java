@@ -11,14 +11,12 @@ import org.springframework.web.bind.annotation.*;
 import progmatic.moviedatabase.Model.Movie;
 import progmatic.moviedatabase.Repository.MovieRepository;
 import progmatic.moviedatabase.SearchForm.MovieSearchForm;
+import progmatic.moviedatabase.Service.DatabaseUserDetailsService;
 import progmatic.moviedatabase.Service.MovieService;
-import progmatic.moviedatabase.Service.PageUserDetailsService;
 
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Controller
@@ -27,13 +25,13 @@ public class MainController {
     private MovieService movieService;
     private MovieRepository movieRepository;
 
-    private PageUserDetailsService pageUserDetailsService;
+    private DatabaseUserDetailsService databaseUserDetailsService;
 
     @Autowired
-    public MainController(MovieService movieService, MovieRepository movieRepository, PageUserDetailsService pageUserDetailsService){
+    public MainController(MovieService movieService, MovieRepository movieRepository, DatabaseUserDetailsService databaseUserDetailsService){
         this.movieService = movieService;
         this.movieRepository = movieRepository;
-        this.pageUserDetailsService = pageUserDetailsService;
+        this.databaseUserDetailsService = databaseUserDetailsService;
     }
 
     @GetMapping(value = "/")

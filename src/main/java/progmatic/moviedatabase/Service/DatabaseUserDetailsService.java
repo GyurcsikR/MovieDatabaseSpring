@@ -15,10 +15,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class PageUserDetailsService implements UserDetailsService {
+public class DatabaseUserDetailsService implements UserDetailsService {
     private final UserRepository userRepository;
 
-    public PageUserDetailsService(UserRepository userRepository) {
+    public DatabaseUserDetailsService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
