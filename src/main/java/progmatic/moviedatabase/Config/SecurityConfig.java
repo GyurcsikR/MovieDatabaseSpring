@@ -31,11 +31,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
 
                 .authorizeRequests()
-                .antMatchers("/", "/list", "/p*/**")
+                .antMatchers("/", "/list", "/p*/**", "/register")
                 .permitAll()
 
                 .antMatchers("/list/search")
-                .hasRole("ADMIN")
+                .hasAnyRole("ADMIN", "USER")
 
                 .anyRequest()
                 .authenticated();

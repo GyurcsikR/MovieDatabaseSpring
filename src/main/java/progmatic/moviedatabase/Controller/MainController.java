@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import progmatic.moviedatabase.Model.Movie;
+import progmatic.moviedatabase.Model.User;
 import progmatic.moviedatabase.Repository.MovieRepository;
 import progmatic.moviedatabase.SearchForm.MovieSearchForm;
 import progmatic.moviedatabase.Service.DatabaseUserDetailsService;
@@ -101,6 +102,20 @@ public class MainController {
         request.getSession(true).invalidate();
 
         return "login";
+    }
+
+    @GetMapping(value = {"/register"})
+    public String saveUserPage(Model model) {
+        model.addAttribute("user", new User());
+
+        return "saveUser";
+    }
+
+    @PostMapping(value = {"/register"})
+    public String saveUser(User user) {
+        databaseUserDetailsService.saveUser(user);
+
+        return "redirect:/login";
     }
 }
 

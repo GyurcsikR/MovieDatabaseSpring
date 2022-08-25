@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import progmatic.moviedatabase.Model.User;
 import progmatic.moviedatabase.Repository.UserRepository;
 
@@ -48,10 +49,7 @@ public class DatabaseUserDetailsService implements UserDetailsService {
                     )
             );
         }
-
-
     }
-
     public UserDetails getLoggedInUser() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -60,5 +58,10 @@ public class DatabaseUserDetailsService implements UserDetailsService {
         }
 
         return null;
+    }
+    @Transactional
+    public void saveUser(User user){
+        user.setPassword(encoder.encode(user.getPassword()));
+        userRepository.save(user);
     }
 }

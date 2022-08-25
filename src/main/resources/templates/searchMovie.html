@@ -19,6 +19,9 @@
 <li sec:authorize="!isAuthenticated()">
     <a data-th-href="@{/login}">Bejelentkezés</a>
 </li>
+<li>
+    <a data-th-href="@{/register}">Regisztráció</a>
+</li>
 &nbsp;
 
 <h1>Keresés</h1>
@@ -41,7 +44,7 @@
             <td><input type="text" data-th-field="*{producer}" /></td>
         </tr>
         <tr>
-            <th>Szereplő szeinti keresés:</th>
+            <th>Szereplő szerinti keresés:</th>
             <td><input type="text" data-th-field="*{actor}" /></td>
         </tr>
         <tr>
