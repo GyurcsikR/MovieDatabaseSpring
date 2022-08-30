@@ -1,0 +1,37 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    background-image: url("ocean.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.container{
+    width: 20%;
+    height: 180px;
+    background-color: rgba(0,0,0,0.3);
+    border: 1px solid;
+    margin: 100px auto 0 auto;
+    border-radius: 20px;
+    color: #fff;
+    padding: 20px;
+}
+.container input{
+    width: 100%;
+    height: 30px;
+    border-radius: 20px;
+    border: none;
+}
+#menubar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+
+}

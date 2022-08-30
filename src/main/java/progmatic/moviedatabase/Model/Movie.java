@@ -2,6 +2,8 @@ package progmatic.moviedatabase.Model;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -17,7 +19,8 @@ public class Movie {
     private String producer;
     private String actor;
     private String ageLimit;
-
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
+    private List<Comment> comments = new ArrayList<>();
 
 
     public Movie() {
@@ -115,6 +118,14 @@ public class Movie {
 
     public void setAgeLimit(String ageLimit) {
         this.ageLimit = ageLimit;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 
     @Override

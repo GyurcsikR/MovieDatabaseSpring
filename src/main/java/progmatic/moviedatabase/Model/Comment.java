@@ -10,18 +10,23 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    private Movie movie;
+
     private String createdBy;
 
-    @Column(columnDefinition = "TEXT")
+    @Lob
     private String text;
 
     private LocalDateTime created;
+
 
     public Comment() {
         this.created = LocalDateTime.now();
     }
 
-    public Comment(String createdBy, String text, LocalDateTime created) {
+    public Comment(Movie movie, String createdBy, String text, LocalDateTime created) {
+        this.movie = movie;
         this.createdBy = createdBy;
         this.text = text;
         this.created = LocalDateTime.now();
@@ -33,6 +38,14 @@ public class Comment {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Movie getMovie() {
+        return movie;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
     }
 
     public String getCreatedBy() {

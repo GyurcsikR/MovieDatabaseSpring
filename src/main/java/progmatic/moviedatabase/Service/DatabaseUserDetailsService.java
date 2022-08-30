@@ -60,8 +60,8 @@ public class DatabaseUserDetailsService implements UserDetailsService {
         return null;
     }
     @Transactional
-    public void saveUser(User user){
+    public User saveUser(User user){
         user.setPassword(encoder.encode(user.getPassword()));
-        userRepository.save(user);
+        return userRepository.save(user);
     }
 }
