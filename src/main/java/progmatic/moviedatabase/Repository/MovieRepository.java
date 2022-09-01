@@ -13,4 +13,6 @@ public interface MovieRepository extends PagingAndSortingRepository<Movie, Long>
 
     List<Movie> findAllByIdBetween(Long id1, Long id2);
 
+    List<Movie> findAll();
+
 }

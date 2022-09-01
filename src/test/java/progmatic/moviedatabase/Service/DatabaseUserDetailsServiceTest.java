@@ -36,6 +36,8 @@ class DatabaseUserDetailsServiceTest {
         assertEquals(user, databaseUserDetailsService.saveUser(user));
     }
 
+
+
   /*  @Test
     public void getUserByUsername(){
         String username = "Ricsi";
